@@ -1,0 +1,471 @@
+/* Modern Global Reset with Custom Properties */
+:root {
+    /* Color Palette */
+    --primary: #ff6b6b;
+    --secondary: #4ecdc4;
+    --dark: #1a1a2e;
+    --darker: #16213e;
+    --light: #f8f9fa;
+    --accent: #ffd166;
+    --text: #e6e6e6;
+    --text-dark: #333;
+    
+    /* Design Tokens */
+    --transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+    --shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 20px 40px -10px rgba(0, 0, 0, 0.4);
+    --border-radius: 12px;
+    --border-radius-sm: 6px;
+    
+    /* Spacing */
+    --space-xs: 0.5rem;
+    --space-sm: 1rem;
+    --space-md: 1.5rem;
+    --space-lg: 2rem;
+    --space-xl: 3rem;
+  }
+  
+  /* Base Styles */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+    font-size: 100%;
+  }
+  
+  body {
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background-color: var(--dark);
+    color: var(--text);
+    line-height: 1.7;
+    overflow-x: hidden;
+    background-image: 
+      radial-gradient(circle at 25% 25%, rgba(30, 30, 60, 0.8) 0%, transparent 50%),
+      radial-gradient(circle at 75% 75%, rgba(40, 40, 80, 0.6) 0%, transparent 50%);
+  }
+  
+  /* Typography Scale */
+  h1, h2, h3, h4 {
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: var(--space-sm);
+  }
+  
+  h1 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    background: linear-gradient(45deg, var(--primary), var(--accent));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    display: inline-block;
+  }
+  
+  h2 {
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    position: relative;
+    display: inline-block;
+    margin-bottom: var(--space-lg);
+  }
+  
+  h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 60px;
+    height: 4px;
+    background: var(--primary);
+    border-radius: 2px;
+  }
+  
+  p {
+    margin-bottom: var(--space-md);
+    font-size: 1.1rem;
+  }
+  
+  /* Navigation - Modern Glass Morphism */
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: var(--space-md) 5%;
+    z-index: 1000;
+    background: rgba(26, 26, 46, 0.8);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: var(--transition);
+  }
+  
+  nav.scrolled {
+    padding: var(--space-sm) 5%;
+    background: rgba(22, 33, 62, 0.95);
+  }
+  
+  nav ul {
+    display: flex;
+    gap: var(--space-lg);
+    justify-content: flex-start;
+    align-items: center;
+    list-style: none;
+  }
+  
+  nav a {
+    text-decoration: none;
+    color: var(--text);
+    font-size: 1.1rem;
+    font-weight: 500;
+    position: relative;
+    padding: var(--space-xs) 0;
+    transition: var(--transition);
+  }
+  
+  nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--primary);
+    transition: var(--transition);
+  }
+  
+  nav a:hover {
+    color: var(--primary);
+  }
+  
+  nav a:hover::after {
+    width: 100%;
+  }
+  
+  /* Enhanced Landing Section */
+  /* Enhanced Landing Section */
+.landing {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 120px 5% 0; /* 👈 Added top padding here */
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    background: linear-gradient(135deg, var(--dark) 0%, var(--darker) 100%);
+  }
+  
+  
+  /* Background Animations */
+  .landing::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: 
+      radial-gradient(circle at 30% 30%, rgba(255, 107, 107, 0.1) 0%, transparent 25%),
+      radial-gradient(circle at 70% 70%, rgba(78, 205, 196, 0.1) 0%, transparent 25%);
+    animation: float 15s infinite alternate ease-in-out;
+    z-index: -1;
+  }
+  
+  .landing::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+      radial-gradient(circle at 20% 80%, rgba(255, 209, 102, 0.05) 0%, transparent 20%),
+      radial-gradient(circle at 80% 20%, rgba(106, 176, 76, 0.05) 0%, transparent 20%);
+    animation: pulse 8s infinite alternate;
+    z-index: -2;
+  }
+  
+  /* Photo Container */
+  .photo-placeholder {
+    width: clamp(180px, 20vw, 280px);
+    height: clamp(180px, 20vw, 280px);
+    border-radius: 50%;
+    margin: 0 auto var(--space-lg);
+    position: relative;
+    box-shadow:
+      0 0 0 8px rgba(255, 107, 107, 0.3),
+      0 0 30px rgba(255, 107, 107, 0.4);
+    transition: var(--transition);
+    z-index: 2;
+    border: 5px solid var(--primary);
+    animation: float 6s infinite alternate ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--dark);
+    overflow: visible; /* changed from hidden */
+  }
+  
+  .photo-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    border-radius: 50%;
+    filter: grayscale(20%);
+    transition: var(--transition);
+  }
+  
+  .photo-placeholder img:hover {
+    filter: grayscale(0%);
+  }
+
+  /* Text Elements */
+  .name {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 700;
+    margin-bottom: var(--space-xs);
+    background: linear-gradient(45deg, var(--primary), var(--accent));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 1s forwards 0.3s;
+  }
+  
+  .title {
+    font-size: 1.5rem;
+    color: var(--accent);
+    margin-bottom: var(--space-lg);
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 1s forwards 0.7s;
+  }
+  
+  .intro-text {
+    max-width: 700px;
+    margin: var(--space-lg) auto;
+    font-size: 1.25rem;
+    text-align: center;
+    position: relative;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 1s forwards 0.5s;
+  }
+  
+  /* Section Containers */
+  .container {
+    width: 90%;
+    max-width: 1200px;
+    margin: var(--space-xl) auto;
+    padding: var(--space-xl);
+    background: var(--darker);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    position: relative;
+    overflow: hidden;
+    transition: var(--transition);
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  
+  .container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+  }
+  
+  .container.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .container:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+  }
+  
+  /* Buttons */
+  .button {
+    padding: var(--space-xs) var(--space-lg);
+    background: linear-gradient(45deg, var(--primary), var(--accent));
+    border: none;
+    border-radius: 50px;
+    color: var(--dark);
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    transition: var(--transition);
+    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+    position: relative;
+    overflow: hidden;
+    margin-top: var(--space-sm);
+    text-decoration: none;
+  }
+  
+  .button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: 0.6s;
+  }
+  
+  .button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+  }
+  
+  .button:hover::before {
+    left: 100%;
+  }
+  
+  .button::after {
+    content: '→';
+    font-size: 1.2rem;
+    transition: var(--transition);
+  }
+  
+  .button:hover::after {
+    transform: translateX(5px);
+  }
+  
+  /* Footer */
+  footer {
+    text-align: center;
+    padding: var(--space-xl) 0;
+    background: linear-gradient(to right, var(--darker), #0f0c29);
+    color: var(--text);
+    font-size: 1rem;
+    margin-top: var(--space-xl);
+    position: relative;
+  }
+  
+  footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  }
+  
+  footer p {
+    margin: 0;
+    opacity: 0.8;
+  }
+  
+  /* Animations */
+  @keyframes float {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    50% { transform: translate(-2%, 2%) rotate(1deg); }
+    100% { transform: translate(2%, -2%) rotate(-1deg); }
+  }
+  
+  @keyframes pulse {
+    0% { opacity: 0.8; transform: scale(1); }
+    100% { opacity: 1; transform: scale(1.02); }
+  }
+  
+  @keyframes fadeInUp {
+    to {
+      opacity: 0.9;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  /* Utility Classes */
+  .highlight {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .highlight::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--accent);
+    transition: var(--transition);
+  }
+  
+  .highlight:hover {
+    color: var(--accent);
+  }
+  
+  .highlight:hover::after {
+    width: 100%;
+  }
+  
+  /* Scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: var(--darker);
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(var(--primary), var(--secondary));
+    border-radius: 5px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--primary);
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    html {
+      font-size: 90%;
+    }
+    
+    nav ul {
+      gap: var(--space-sm);
+    }
+    
+    .container {
+      padding: var(--space-lg);
+      width: 95%;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    nav {
+      padding: var(--space-sm);
+    }
+    
+    nav ul {
+      justify-content: center;
+    }
+    
+    .container {
+      padding: var(--space-md);
+    }
+  }

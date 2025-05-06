@@ -1,0 +1,34 @@
+[
+  {
+    "name": "Profiling Sheet",
+    "excerpt" : "An overview of my personal attributes, aspirations, and core values.",
+    "date": "2025-02-10",
+    "thumbnail": "profile.png"
+  },
+  {
+    "name": "AloeGlow (Presentation)",
+    "excerpt" : "A recorded presentation delivered as part of an academic classroom activity.",
+    "date": "2025-03-04",
+    "thumbnail": "AloeGlow.jpg"
+  },
+  {
+    "name": "Brain Activities & Self Introduction",
+    "excerpt" : "Understanding Left and Right Brain Functions and key points about self introduction",
+    "date": "2025-02-03",
+    "thumbnail": "act1.avif"
+  },
+  {
+    "name": "Movie Review",
+    "excerpt" : "An analytical review of The Pursuit of Happyness highlighting its key themes.",
+    "date": "2025-03-11",
+    "thumbnail": "movie.png"
+  },
+  {
+    "name": "Group Discussion",
+    "excerpt" : "A thoughtful group discussion by students on the theme — Success is a journey, not a destination.",
+    "date": "2025-04-22",
+    "thumbnail": "groupDiscussion.jpg"
+
+  }
+
+]

@@ -1,0 +1,392 @@
+<!-- 2025-03-11.html Movie Review -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Review: The Pursuit of Happyness</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #ff6b6b;
+            --secondary: #4ecdc4;
+            --dark: #1a1a2e;
+            --darker: #16213e;
+            --light: #f8f9fa;
+            --accent: #ffd166;
+            --text: #e6e6e6;
+            --text-dark: #333;
+            --transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+            --shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.3);
+            --border-radius: 12px;
+            --background: #0a192f;
+            --review-darker: #112240;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--background);
+            margin: 0;
+            padding: 0;
+            background-image: 
+                radial-gradient(circle at 25% 25%, rgba(30, 30, 60, 0.8) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(40, 40, 80, 0.6) 0%, transparent 50%);
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        /* Back Button Styles */
+         .back-button-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+        }
+        
+        .back-button {
+            display: flex;
+            align-items: center;
+            background: rgba(17, 34, 64, 0.8);
+            color: var(--accent);
+            border: 1px solid rgba(255, 209, 102, 0.3);
+            padding: 8px 15px 8px 10px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: var(--transition);
+            backdrop-filter: blur(5px);
+            box-shadow: var(--shadow);
+        }
+        
+        .back-button:hover {
+            background: rgba(255, 209, 102, 0.1);
+            border-color: var(--accent);
+            transform: translateX(-3px);
+        }
+        
+        .back-button i {
+            margin-right: 5px;
+            font-size: 1.2rem;
+            color: var(--accent);
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+            margin-bottom: 0.5rem;
+        }
+        
+        .subtitle {
+            color: var(--accent);
+            font-size: 1.2rem;
+            font-weight: 300;
+        }
+        
+        .movie-poster {
+            width: 100%;
+            max-width: 300px;
+            display: block;
+            margin: 1.5rem auto;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .review-section {
+            background-color: var(--review-darker);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .review-section::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
+        
+        h2 {
+            color: var(--accent);
+            margin-top: 0;
+            font-size: 1.8rem;
+            border-bottom: 1px solid rgba(255, 209, 102, 0.2);
+            padding-bottom: 0.5rem;
+        }
+        
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 2rem 0;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        .read-more {
+            margin-top: 3rem;
+        }
+        
+        .related-articles {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .article-card {
+            background-color: var(--review-darker);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            cursor: pointer;
+            position: relative;
+        }
+        
+        .article-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+        }
+        
+        .article-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
+        
+        .article-img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .article-content {
+            padding: 1.2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            flex-grow: 1;
+        }
+        
+        .article-title {
+            color: var(--text);
+            margin: 0 0 0.5rem 0;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+        
+        .article-excerpt {
+            color: var(--text);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            opacity: 0.8;
+        }
+        
+        .read-btn {
+            display: inline-block;
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+        
+        .read-btn:hover {
+            color: var(--primary);
+        }
+        
+        blockquote {
+            font-style: italic;
+            color: var(--text);
+            border-left: 3px solid var(--accent);
+            padding-left: 1rem;
+            margin: 1.5rem 0;
+            opacity: 0.9;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .review-section {
+                padding: 1.5rem;
+            }
+            
+            .related-articles {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+        <!-- Back Button  -->
+        <div class="back-button-container">
+            <a href="../LearnLog.html" class="back-button">
+                <i class="material-icons">arrow_back_ios</i> Back
+            </a>
+        </div>
+    <div class="container">
+        <header>
+            <h1>The Pursuit of Happyness</h1>
+            <p class="subtitle">A Journey of Perseverance and Hope</p>
+            <img src="https://m.media-amazon.com/images/M/MV5BMTQ5NjQ0NDI3NF5BMl5BanBnXkFtZTcwNDI0MjEzMw@@._V1_.jpg" alt="The Pursuit of Happyness Movie Poster" class="movie-poster">
+        </header>
+        
+        <div class="review-section">
+            <h2>Favorite Dialogue</h2>
+            <blockquote>
+                "Don't ever let somebody tell you... You can't do something. Not even me. You got a dream... You gotta protect it. People can't do something themselves, they wanna tell you you can't do it. You want something? Go get it. Period."
+            </blockquote>
+            <p>This dialogue resonates deeply because it encapsulates the film's central message about perseverance in the face of adversity. Chris Gardner's words to his son represent not just parental advice, but a universal truth about pursuing one's dreams despite naysayers. The raw emotion in this scene, combined with its simple yet powerful wisdom, makes it unforgettable.</p>
+        </div>
+        
+        <div class="review-section">
+            <h2>Personal Review</h2>
+            <p>Will Smith delivers a career-defining performance in this inspiring true story of Chris Gardner, a struggling salesman who becomes homeless with his young son while pursuing an unpaid internship at a prestigious stock brokerage firm. The film beautifully captures the desperation of poverty and the relentless determination required to overcome it.</p>
+            <p>What makes "The Pursuit of Happyness" exceptional is its refusal to sugarcoat Gardner's struggles. The scenes in the homeless shelter and public restroom are heartbreaking yet necessary to understand the magnitude of his eventual success. The father-son chemistry between Will Smith and Jaden Smith adds authentic emotional depth.</p>
+            <p>While some critics argue the film follows a predictable underdog formula, the power of the true story and Smith's nuanced performance elevate it beyond typical Hollywood inspiration. The deliberate misspelling of "happiness" in the title serves as a constant reminder that the path to fulfillment is rarely perfect or conventional.</p>
+        </div>
+        
+        <div class="review-section">
+            <h2>Key Takeaways</h2>
+            <ul style="padding-left: 1.5rem;">
+                <li><strong>Perseverance pays off:</strong> Gardner's story demonstrates that consistent effort in the face of repeated failures can lead to success.</li>
+                <li><strong>Parental sacrifice:</strong> The film highlights the extraordinary lengths parents will go to provide for their children.</li>
+                <li><strong>The illusion of overnight success:</strong> Gardner's internship shows that what appears as sudden success is often preceded by unseen struggle.</li>
+                <li><strong>Importance of self-belief:</strong> In the absence of external validation, believing in oneself becomes crucial.</li>
+                <li><strong>Resourcefulness in adversity:</strong> The film showcases creative problem-solving under extreme constraints.</li>
+            </ul>
+        </div>
+        
+        <div class="review-section">
+            <h2>Classroom Connections</h2>
+            <p>This film relates to several academic concepts:</p>
+            <ul style="padding-left: 1.5rem;">
+                <li><strong>Economics:</strong> Poverty cycles, social mobility, and the challenges of unpaid internships</li>
+                <li><strong>Psychology:</strong> Resilience, motivation theories (especially intrinsic vs. extrinsic), and stress coping mechanisms</li>
+                <li><strong>Business Studies:</strong> Sales techniques, stock market fundamentals, and professional networking</li>
+                <li><strong>Sociology:</strong> Homelessness in America, single-parent challenges, and systemic barriers to success</li>
+                <li><strong>Ethics:</strong> Moral dilemmas in business and personal relationships</li>
+            </ul>
+        </div>
+        
+        <!-- <div class="video-container">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/DMOBlEcRuw8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div> -->
+        
+        <div class="read-more">
+            <h2 style="color: var(--accent); border-bottom: 1px solid rgba(255, 209, 102, 0.2); padding-bottom: 0.5rem;">Read More</h2>
+            <div class="related-articles" id="relatedArticles">
+                <!-- Articles will be loaded here by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sample post data (in a real scenario, this would come from post.json)
+        const posts = [
+            {
+                id: 1,
+                title: "Profiling Sheet",
+                excerpt: "An overview of my personal attributes, aspirations, and core values.",
+                image: "../thumbnails/profile.png",
+                url: "2025-02-10.html",
+                date: "2025-02-10"
+            },
+            {
+                id: 2,
+                title: "AloeGlow (Presentation)",
+                excerpt: "A recorded presentation delivered as part of an academic classroom activity.",
+                image: "../thumbnails/AloeGlow.jpg",
+                url: "2025-03-04.html",
+                date: "2025-03-04"
+            },
+            {
+                id:3,
+                title: "Brain Activities & Self Introduction",
+                excerpt: "Understanding Left and Right Brain Functions and key points about self introduction",
+                image: "../thumbnails/act1.avif",
+                url: "2025-02-03.html",
+                date: "2025-02-03"
+            }
+        ];
+
+        // Function to load related articles
+        function loadRelatedArticles() {
+            const container = document.getElementById('relatedArticles');
+            
+            posts.forEach(post => {
+                const articleHTML = `
+                    <div class="article-card" onclick="window.location.href='${post.url}'">
+                        <img src="${post.image}" alt="${post.title}" class="article-img">
+                        <div class="article-content">
+                            <h3 class="article-title">${post.title}</h3>
+                            <p class="article-excerpt">${post.excerpt}</p>
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <span class="post-date" style="color: var(--accent); font-size: 0.9rem;">${post.date}</span>
+                                <a href="${post.url}" class="read-btn">Read More →</a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                container.insertAdjacentHTML('beforeend', articleHTML);
+            });
+        }
+
+        // Load articles when page loads
+        window.addEventListener('DOMContentLoaded', loadRelatedArticles);
+    </script>
+</body>
+</html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Technical Profile</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="profile.css" />
+  <style>
+    /* Add this CSS for the back button */
+    .nav-header {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      padding: 20px;
+    }
+    
+    .back-button-container {
+      display: flex;
+      align-items: center;
+    }
+    
+    .back-button {
+      display: flex;
+      align-items: center;
+      background: rgba(17, 34, 64, 0.8);
+      color: #ffd166;
+      border: 1px solid rgba(255, 209, 102, 0.3);
+      padding: 8px 15px 8px 10px;
+      border-radius: 50px;
+      cursor: pointer;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 500;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+      backdrop-filter: blur(5px);
+      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.3);
+    }
+    
+    .back-button:hover {
+      background: rgba(255, 209, 102, 0.1);
+      border-color: #ffd166;
+      transform: translateX(-3px);
+    }
+    
+    .back-button i {
+      margin-right: 5px;
+      font-size: 1.2rem;
+      color: #ffd166;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Modified navigation header with back button -->
+  <nav>
+    <div class="nav-header">
+      <div class="back-button-container">
+        <a href="index.html" class="back-button">
+          <i class="material-icons">arrow_back_ios</i> Back
+        </a>
+      </div>
+      <div class="logo">MyProfile</div>
+    </div>
+    
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#certifications">Certifications</a></li>
+      <li><a href="#achievements">Achievements</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <header class="hero">
+    <h1>Hello, Suryansh Chandrakar</h1>
+    <p>Bachelor of Technology(B.Tech) Computer Science Graphic Era Hill University Dehradun Campus | Tech Enthusiast</p>
+  </header>
+
+  <section id="about">
+    <h2>About Me</h2>
+    <p>A passionate person with a knack for solving real-world problems through technology. Constantly learning and evolving with the tech world.</p>
+  </section>
+
+  <section id="education">
+    <h2>Education</h2>
+    <div class="education-entry">
+      <h3>Bachelor of Technology in Computer Science</h3>
+      <p>Graphic Era Hill University, 2023 - 2027</p>
+      <p>CGPA: 8.6/10</p>
+    </div>
+  </section>
+
+  <section id="skills">
+    <h2>Technical Skills</h2>
+    <div class="skills-list">
+      <span>C</span>
+      <span>Java</span>
+      <span>C++</span>
+      <span>HTML & CSS</span>
+      <span>JavaScript</span>
+    </div>
+  </section>
+
+  <!-- <section id="experience">
+    <h2>Work Experience</h2>
+    <div class="job-entry">
+      <h3></h3>
+      <p></p>
+      <ul>
+        <li></li>
+        <li></li>
+      </ul>
+    </div>
+  </section> -->
+
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="project">
+      <h3>Automatic Student's Attendance Marking System</h3>
+      <p></p>
+    </div>
+    <div class="project">
+      <h3>Intrusion Detection and Prevention System</h3>
+      <p></p>
+    </div>
+  </section>
+
+  <section id="certifications">
+    <h2>Certifications</h2>
+    <ul>
+      <li>Introduction to Google cloud Computing Platform(GCP) by NPTEL</li>
+      <li>Introduction to Edge Computing by NPTEL</li>
+    </ul>
+  </section>
+
+  <section id="achievements">
+    <h2>Achievements</h2>
+    <ul>
+      <li>200+ DSA problems solved on LeetCode</li>
+      <li></li>
+      <li></li>
+    </ul>
+  </section>
+
+  <section id="contact">
+    <h2>Contact Info</h2>
+    <p><strong>Email:</strong> SuryanshChandrakr72@gmail.com</p>
+    <p><strong>Phone:</strong> +91-8218342785</p>
+    <p><strong>LinkedIn:</strong> </p>
+    <p><strong>GitHub:</strong> </p>
+    <p><strong>Location:</strong> Uttarakhand, India</p>
+  </section>
+
+  <footer>
+    <p>Designed & Developed by Suryansh Chandrakar | © 2025</p>
+  </footer>
+
+  <script src="profile.js"></script>
+</body>
+</html>

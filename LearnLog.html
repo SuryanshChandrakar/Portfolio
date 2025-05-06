@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LearnLog</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #ff6b6b;
+      --secondary: #4ecdc4;
+      --dark: #1a1a2e;
+      --darker: #16213e;
+      --light: #f8f9fa;
+      --accent: #ffd166;
+      --text: #e6e6e6;
+      --text-dark: #333;
+      --transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+      --shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.3);
+      --border-radius: 12px;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--dark);
+      background-image: 
+        radial-gradient(circle at 25% 25%, rgba(30, 30, 60, 0.8) 0%, transparent 50%),
+        radial-gradient(circle at 75% 75%, rgba(40, 40, 80, 0.6) 0%, transparent 50%);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    header {
+      text-align: center;
+      padding: 2rem 1rem;
+      background-color: rgba(26, 26, 46, 0.85);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      background: linear-gradient(45deg, var(--primary), var(--accent));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      display: inline-block;
+    }
+
+    header p {
+      font-size: 1.1rem;
+      color: var(--accent);
+      margin-top: 0.5rem;
+    }
+
+    .search-container {
+      margin: 30px auto;
+      text-align: center;
+      max-width: 720px;
+      /* padding: 0 20px;*/
+      position: relative;
+    }
+
+    .search-container input {
+      padding: 14px 20px 14px 48px;
+      width: 100%;
+      max-width: 600px;
+      border-radius: 30px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background-color: var(--darker);
+      color: var(--text);
+      font-size: 1rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      transition: var(--transition);
+    }
+
+    .search-container::before {
+      content: "search";
+      font-family: 'Material Icons';
+      position: absolute;
+      left: 32px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--accent);
+      font-size: 20px;
+    }
+
+    .search-container input:focus {
+      outline: none;
+      box-shadow: 0 0 10px var(--accent);
+      border-color: var(--accent);
+    }
+
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .carousel-wrapper {
+      position: relative;
+      width: 100%;
+      margin: 40px auto;
+      overflow: hidden;
+    }
+
+    .posts-carousel {
+      display: flex;
+      gap: 24px;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      padding: 16px 40px;
+      scrollbar-width: none;
+    }
+
+    .posts-carousel::-webkit-scrollbar {
+      display: none;
+    }
+
+    .arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: var(--darker);
+      color: var(--text);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      cursor: pointer;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+      box-shadow: var(--shadow);
+    }
+
+    .arrow:hover {
+      color: var(--primary);
+      transform: translateY(-50%) scale(1.1);
+      box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+    }
+
+    .left-arrow { left: 0; }
+    .right-arrow { right: 0; }
+
+    .post-card {
+      flex: 0 0 300px;
+      background-color: var(--darker);
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .post-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+    }
+
+    .post-image {
+      height: 160px;
+      width: 100%;
+      object-fit: cover;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .post-content {
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      flex-grow: 1;
+    }
+
+    .post-title {
+      font-size: 1.2rem;
+      font-weight: 500;
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+
+    .post-date {
+      color: var(--accent);
+      font-size: 0.9rem;
+      margin-top: auto;
+      font-weight: 400;
+    }
+    .article-excerpt {
+            color: var(--text);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            opacity: 0.8;
+        }
+
+    .post-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+    }
+
+    @media (max-width: 768px) {
+      .arrow {
+        width: 36px;
+        height: 36px;
+      }
+
+      header h1 {
+        font-size: 2rem;
+      }
+
+      header p {
+        font-size: 1rem;
+      }
+    }
+     /* Back Button Styles */
+     .back-button-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+        }
+        
+        .back-button {
+            display: flex;
+            align-items: center;
+            background: rgba(17, 34, 64, 0.8);
+            color: var(--accent);
+            border: 1px solid rgba(255, 209, 102, 0.3);
+            padding: 8px 15px 8px 10px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: var(--transition);
+            backdrop-filter: blur(5px);
+            box-shadow: var(--shadow);
+        }
+        
+        .back-button:hover {
+            background: rgba(255, 209, 102, 0.1);
+            border-color: var(--accent);
+            transform: translateX(-3px);
+        }
+        
+        .back-button i {
+            margin-right: 5px;
+            font-size: 1.2rem;
+            color: var(--accent);
+        }
+  </style>
+</head>
+<body>
+          <!-- Back Button  -->
+        <div class="back-button-container">
+            <a href="index.html" class="back-button">
+                <i class="material-icons">arrow_back_ios</i> Back
+            </a>
+        </div>
+  <header>
+    <h1>LearnLogs</h1>
+    <p>A personal vault of learnings and class insights</p>
+  </header>
+
+  <div class="search-container">
+    <input type="text" id="searchInput" placeholder="Search posts...">
+  </div>
+
+  <main>
+    <div class="carousel-wrapper">
+      <button class="arrow left-arrow" id="leftArrow" aria-label="Scroll left">
+        <span class="material-icons">chevron_left</span>
+      </button>
+      <div class="posts-carousel" id="postsCarousel"></div>
+      <button class="arrow right-arrow" id="rightArrow" aria-label="Scroll right">
+        <span class="material-icons">chevron_right</span>
+      </button>
+    </div>
+  </main>
+
+  <script>
+    const carousel = document.getElementById('postsCarousel');
+    const searchInput = document.getElementById('searchInput');
+    const leftArrow = document.getElementById('leftArrow');
+    const rightArrow = document.getElementById('rightArrow');
+
+    fetch('posts.json')
+      .then(res => res.json())
+      .then(posts => {
+        posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+        displayPosts(posts);
+
+        searchInput.addEventListener("input", () => {
+          const filter = searchInput.value.toLowerCase();
+          const filtered = posts.filter(post => post.name.toLowerCase().includes(filter));
+          displayPosts(filtered);
+        });
+      });
+
+
+    function displayPosts(postList) {
+  carousel.innerHTML = '';
+  postList.forEach(post => {
+    const card = document.createElement('div');
+    card.className = 'post-card';
+    card.onclick = () => {
+      window.location.href = `post/${post.date.split('-').join('-')}.html`;
+    };
+
+    const img = document.createElement('img');
+    img.src = post.thumbnail ? `thumbnails/${post.thumbnail}` : 'default-thumb.jpg';
+    img.alt = post.name;
+    img.className = 'post-image';
+
+    const content = document.createElement('div');
+    content.className = 'post-content';
+
+    const title = document.createElement('div');
+    title.className = 'post-title';
+    title.textContent = post.name;
+
+    const excerpt = document.createElement('p');
+    excerpt.className = 'article-excerpt';
+    excerpt.textContent = post.excerpt || '';
+
+
+    const date = document.createElement('div');
+    date.className = 'post-date';
+    date.textContent = post.date;
+
+    content.appendChild(title);
+    content.appendChild(excerpt);
+    content.appendChild(date);
+    card.appendChild(img);
+    card.appendChild(content);
+    carousel.appendChild(card);
+  });
+}
+
+    rightArrow.addEventListener("click", () => {
+      carousel.scrollBy({ left: 350, behavior: 'smooth' });
+    });
+
+    leftArrow.addEventListener("click", () => {
+      carousel.scrollBy({ left: -350, behavior: 'smooth' });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,440 @@
+<!-- Presentation -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AloeGlow - Investor Presentation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #ff6b6b;
+            --secondary: #4ecdc4;
+            --dark: #1a1a2e;
+            --darker: #16213e;
+            --light: #f8f9fa;
+            --accent: #ffd166;
+            --text: #e6e6e6;
+            --text-dark: #333;
+            --transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+            --shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.3);
+            --border-radius: 12px;
+            --background: #0a192f;
+            --review-darker: #112240;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--background);
+            margin: 0;
+            padding: 0;
+            background-image: 
+                radial-gradient(circle at 25% 25%, rgba(30, 30, 60, 0.8) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(40, 40, 80, 0.6) 0%, transparent 50%);
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        /* Back Button Styles */
+        .back-button-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+        }
+        
+        .back-button {
+            display: flex;
+            align-items: center;
+            background: rgba(17, 34, 64, 0.8);
+            color: var(--accent);
+            border: 1px solid rgba(255, 209, 102, 0.3);
+            padding: 8px 15px 8px 10px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: var(--transition);
+            backdrop-filter: blur(5px);
+            box-shadow: var(--shadow);
+        }
+        
+        .back-button:hover {
+            background: rgba(255, 209, 102, 0.1);
+            border-color: var(--accent);
+            transform: translateX(-3px);
+        }
+        
+        .back-button i {
+            margin-right: 5px;
+            font-size: 1.2rem;
+            color: var(--accent);
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 10px;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+            margin-bottom: 0.5rem;
+        }
+        
+        .subtitle {
+            color: var(--accent);
+            font-size: 1.2rem;
+            font-weight: 300;
+        }
+        
+        .brand-logo {
+            width: 100%;
+            max-width: 200px;
+            display: block;
+            margin: 1.5rem auto;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .presentation-section {
+            background-color: var(--review-darker);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .presentation-section::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
+        
+        h2 {
+            color: var(--accent);
+            margin-top: 0;
+            font-size: 1.8rem;
+            border-bottom: 1px solid rgba(255, 209, 102, 0.2);
+            padding-bottom: 0.5rem;
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .team-member {
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .member-name {
+            color: var(--accent);
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+        
+        .member-role {
+            color: var(--text);
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+        
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 2rem 0;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        .read-more {
+            margin-top: 3rem;
+        }
+        
+        .related-articles {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .article-card {
+            background-color: var(--review-darker);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            cursor: pointer;
+            position: relative;
+        }
+        
+        .article-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+        }
+        
+        .article-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
+        
+        .article-img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .article-content {
+            padding: 1.2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            flex-grow: 1;
+        }
+        
+        .article-title {
+            color: var(--text);
+            margin: 0 0 0.5rem 0;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+        
+        .article-excerpt {
+            color: var(--text);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            opacity: 0.8;
+        }
+        
+        .read-btn {
+            display: inline-block;
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+        
+        .read-btn:hover {
+            color: var(--primary);
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .back-button-container {
+                top: 10px;
+                left: 10px;
+            }
+            
+            .back-button {
+                padding: 6px 12px 6px 8px;
+                font-size: 0.8rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .presentation-section {
+                padding: 1.5rem;
+            }
+            
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .related-articles {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Back Button  -->
+    <div class="back-button-container">
+        <a href="../LearnLog.html" class="back-button">
+            <i class="material-icons">arrow_back_ios</i> Back
+        </a>
+    </div>
+    
+    <div class="container">
+        <header>
+            <h1>AloeGlow</h1>
+            <p class="subtitle">Nature's Radiance, Bottled for You</p>
+            <img src="https://via.placeholder.com/200x200/112240/64ffda?text=AloeGlow" alt="AloeGlow Logo" class="brand-logo">
+        </header>
+        
+        <!-- Concept Video Section -->
+        <div class="presentation-section">
+            <h2>Our Concept</h2>
+            <p>Discover the inspiration and scientific foundation behind AloeGlow. This video explains our core philosophy of combining nature's healing power with cutting-edge skincare technology to create products that are both effective and environmentally responsible.</p>
+            
+            <div class="video-container">
+                <!-- Replace with your actual concept video embed code -->
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/7G4n4kiWXVM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+        
+        <div class="presentation-section">
+            <h2>Investor Pitch Presentation</h2>
+            <p>Our team recently presented AloeGlow to potential investors, showcasing our innovative aloe vera-based skincare line. This presentation highlights our unique value proposition, market research, financial projections, and growth strategy.</p>
+            <p>AloeGlow combines nature's healing power with scientific innovation to deliver premium skincare solutions. Our products are cruelty-free, sustainably sourced, and formulated without harmful chemicals.</p>
+            
+            <div class="video-container">
+                <!-- Replace with your actual presentation video embed code -->
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/x8VdHVgxelQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+        
+        <div class="presentation-section">
+            <h2>Our Team</h2>
+            <p class="subtitle">The minds behind AloeGlow</p>
+            
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="member-name">Suryansh Chandrakar</div>
+                    <div class="member-role">Technical Head</div>
+                </div>
+                <div class="team-member">
+                    <div class="member-name">Alok Nawani</div>
+                    <div class="member-role">CEO</div>
+                </div>
+                <div class="team-member">
+                    <div class="member-name">Om Chamoli</div>
+                    <div class="member-role">Customer Success Manager</div>
+                </div>
+                <div class="team-member">
+                    <div class="member-name">Rachit Bangwal</div>
+                    <div class="member-role">Product strategy Lead </div>
+                </div>
+                <div class="team-member">
+                   
+                    <div class="member-name">Dhruv Verma</div>
+                    <div class="member-role">Accounts Manager</div>
+
+                </div>
+                <div class="team-member">
+                    <div class="member-name">Ankur Pandey</div>
+                    <div class="member-role">CFO</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="read-more">
+            <h2 style="color: var(--accent); border-bottom: 1px solid rgba(255, 209, 102, 0.2); padding-bottom: 0.5rem;">Read More</h2>
+            <div class="related-articles" id="relatedArticles">
+                <!-- Articles will be loaded here by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sample presentation data
+        const presentations = [
+            {
+                id: 1,
+                title: "Profiling Sheet",
+                excerpt: "An overview of my personal attributes, aspirations, and core values.",
+                image: "../thumbnails/profile.png",
+                url: "2025-02-10.html",
+                date: "2025-02-10"
+            },
+            {
+                id: 2,
+                title: "Movie Review",
+                excerpt: "An analytical review of The Pursuit of Happyness highlighting its key themes.",
+                image: "../thumbnails/movie.png",
+                url: "2025-03-11.html",
+                date: "2025-03-11"
+            },
+            {
+                id:3,
+                title: "Brain Activities & Self Introduction",
+                excerpt: "Understanding Left and Right Brain Functions and key points about self introduction",
+                image: "../thumbnails/act1.avif",
+                url: "2025-02-03.html",
+                date: "2025-02-03"
+            }
+        ];
+
+        // Function to load related articles
+        function loadRelatedPresentations() {
+            const container = document.getElementById('relatedArticles');
+            
+            presentations.forEach(presentation => {
+                const articleHTML = `
+                    <div class="article-card" onclick="window.location.href='${presentation.url}'">
+                        <img src="${presentation.image}" alt="${presentation.title}" class="article-img">
+                        <div class="article-content">
+                            <h3 class="article-title">${presentation.title}</h3>
+                            <p class="article-excerpt">${presentation.excerpt}</p>
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <span class="post-date" style="color: var(--accent); font-size: 0.9rem;">${presentation.date}</span>
+                                <a href="${presentation.url}" class="read-btn">View →</a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                container.insertAdjacentHTML('beforeend', articleHTML);
+            });
+        }
+
+        // Load presentations when page loads
+        window.addEventListener('DOMContentLoaded', loadRelatedPresentations);
+    </script>
+</body>
+</html>

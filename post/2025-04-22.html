@@ -1,0 +1,533 @@
+<!-- Group Discussion -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Group Discussion: Success is a Journey | [Your Website]</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+                :root {
+            --primary: #ff6b6b;
+            --secondary: #4ecdc4;
+            --dark: #1a1a2e;
+            --darker: #16213e;
+            --light: #f8f9fa;
+            --accent: #ffd166;
+            --text: #e6e6e6;
+            --text-dark: #333;
+            --transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+            --shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.3);
+            --border-radius: 12px;
+            --background: #0a192f;
+            --review-darker: #112240;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--background);
+            margin: 0;
+            padding: 0;
+            background-image: 
+                radial-gradient(circle at 25% 25%, rgba(30, 30, 60, 0.8) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(40, 40, 80, 0.6) 0%, transparent 50%);
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        /* Back Button Styles */
+        .back-button-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+        }
+        
+        .back-button {
+            display: flex;
+            align-items: center;
+            background: rgba(17, 34, 64, 0.8);
+            color: var(--accent);
+            border: 1px solid rgba(255, 209, 102, 0.3);
+            padding: 8px 15px 8px 10px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: var(--transition);
+            backdrop-filter: blur(5px);
+            box-shadow: var(--shadow);
+        }
+        
+        .back-button:hover {
+            background: rgba(255, 209, 102, 0.1);
+            border-color: var(--accent);
+            transform: translateX(-3px);
+        }
+        
+        .back-button i {
+            margin-right: 5px;
+            font-size: 1.2rem;
+            color: var(--accent);
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+            margin-bottom: 0.5rem;
+        }
+        
+        .subtitle {
+            color: var(--accent);
+            font-size: 1.2rem;
+            font-weight: 300;
+        }
+        
+        .movie-poster {
+            width: 100%;
+            max-width: 300px;
+            display: block;
+            margin: 1.5rem auto;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .review-section {
+            background-color: var(--review-darker);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .review-section::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
+        
+        h2 {
+            color: var(--accent);
+            margin-top: 0;
+            font-size: 1.8rem;
+            border-bottom: 1px solid rgba(255, 209, 102, 0.2);
+            padding-bottom: 0.5rem;
+        }
+        
+        h3 {
+            color: var(--secondary);
+            font-size: 1.4rem;
+            margin-top: 1.5rem;
+        }
+        p1 {
+            font-size: 13px;
+            font-style: italic;
+            color: rgb(252, 244, 244);
+        }
+        
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 2rem 0;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        .read-more {
+            margin-top: 3rem;
+        }
+        
+        .related-articles {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .article-card {
+            background-color: var(--review-darker);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            cursor: pointer;
+            position: relative;
+        }
+        
+        .article-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+        }
+        
+        .article-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
+        
+        .article-img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .article-content {
+            padding: 1.2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            flex-grow: 1;
+        }
+        
+        .article-title {
+            color: var(--text);
+            margin: 0 0 0.5rem 0;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+        
+        .article-excerpt {
+            color: var(--text);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            opacity: 0.8;
+        }
+        
+        .read-btn {
+            display: inline-block;
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+        
+        .read-btn:hover {
+            color: var(--primary);
+        }
+        
+        blockquote {
+            font-style: italic;
+            color: var(--text);
+            border-left: 3px solid var(--accent);
+            padding-left: 1rem;
+            margin: 1.5rem 0;
+            opacity: 0.9;
+        }
+        
+        .dos-donts {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .dos, .donts {
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+        }
+        
+        .dos {
+            background-color: rgba(78, 205, 196, 0.1);
+            border: 1px solid rgba(78, 205, 196, 0.3);
+        }
+        
+        .donts {
+            background-color: rgba(255, 107, 107, 0.1);
+            border: 1px solid rgba(255, 107, 107, 0.3);
+        }
+        
+        .technique-card {
+            background-color: rgba(255, 209, 102, 0.1);
+            border: 1px solid rgba(255, 209, 102, 0.3);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            margin: 1rem 0;
+        }
+        
+        .technique-title {
+            color: var(--accent);
+            margin-top: 0;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .review-section {
+                padding: 1.5rem;
+            }
+            
+            .related-articles {
+                grid-template-columns: 1fr;
+            }
+            
+            .dos-donts {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .video-summary {
+            background-color: rgba(30, 30, 60, 0.5);
+            border-left: 4px solid var(--accent);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .video-summary h4 {
+            color: var(--accent);
+            margin-top: 0;
+        }
+        
+        .video-summary ul {
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+<body>
+        <!-- Back Button  -->
+        <div class="back-button-container">
+            <a href="../LearnLog.html" class="back-button">
+                <i class="material-icons">arrow_back_ios</i> Back
+            </a>
+        </div>
+    <div class="container">
+        <header>
+            <h1>Success is a Journey, Not a Destination</h1>
+            <p class="subtitle">A Thought-Provoking Group Discussion</p>
+        </header>
+
+        <div class="review-section">
+            <h2>Mastering Group Discussions</h2>
+            
+            <h3>Dos and Don'ts of Group Discussion</h3>
+            <div class="dos-donts">
+                <div class="dos">
+                    <h4>Dos:</h4>
+                    <ul>
+                        <li>Listen actively to others' viewpoints</li>
+                        <li>Speak clearly and confidently</li>
+                        <li>Support your points with logical arguments</li>
+                        <li>Maintain eye contact with the group</li>
+                        <li>Respect others' opinions even when disagreeing</li>
+                        <li>Initiate the discussion when appropriate</li>
+                        <li>Summarize key points periodically</li>
+                        <li>Maintain positive body language</li>
+                    </ul>
+                </div>
+                <div class="donts">
+                    <h4>Don'ts:</h4>
+                    <ul>
+                        <li>Don't interrupt others while they're speaking</li>
+                        <li>Avoid dominating the conversation</li>
+                        <li>Don't get personal or emotional</li>
+                        <li>Avoid using slang or informal language</li>
+                        <li>Don't stick to one point repetitively</li>
+                        <li>Avoid being too passive or silent</li>
+                        <li>Don't ignore others' contributions</li>
+                        <li>Avoid negative body language</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <h3>Different Types of Group Discussions</h3>
+            <ul>
+                <li><strong>Topic-based GDs:</strong> Discussion on a specific subject (current affairs, abstract topics, case studies)</li>
+                <li><strong>Case Study GDs:</strong> Analyzing and solving a business scenario or problem</li>
+                <li><strong>Article-based GDs:</strong> Discussion centered around a given article or passage</li>
+                <li><strong>Structured GDs:</strong> With specific rules about speaking time and order</li>
+                <li><strong>Unstructured GDs:</strong> Free-flowing discussion without strict rules</li>
+                <li><strong>Role-play GDs:</strong> Participants assume specific roles or perspectives</li>
+                <li><strong>Group Task GDs:</strong> Discussion aimed at solving a problem or completing a task</li>
+            </ul>
+            
+            <h3>Idea Generation Techniques in GD</h3>
+            
+            <div class="technique-card">
+                <h4 class="technique-title">5W 1H Method</h4>
+                <p>Ask these questions about any topic to generate ideas:</p>
+                <ul>
+                    <li><strong>What:</strong> What is the issue/topic about?</li>
+                    <li><strong>Why:</strong> Why is this important?</li>
+                    <li><strong>Who:</strong> Who is affected by this?</li>
+                    <li><strong>When:</strong> When did this become relevant?</li>
+                    <li><strong>Where:</strong> Where is this most applicable?</li>
+                    <li><strong>How:</strong> How can we address/solve/approach this?</li>
+                </ul>
+            </div>
+            
+            <div class="technique-card">
+                <h4 class="technique-title">SPELT Framework</h4>
+                <p>Analyze topics through multiple dimensions:</p>
+                <ul>
+                    <li><strong>Social:</strong> Impact on society, cultural aspects</li>
+                    <li><strong>Political:</strong> Government policies, political implications</li>
+                    <li><strong>Economic/Environmental:</strong> Financial aspects or ecological impact</li>
+                    <li><strong>Legal:</strong> Laws, regulations, legal considerations</li>
+                    <li><strong>Technological:</strong> Technological influences or requirements</li>
+                </ul>
+            </div>
+            
+            <div class="technique-card">
+                <h4 class="technique-title">Mind Mapping</h4>
+                <p>A visual technique to explore a topic:</p>
+                <ul>
+                    <li>Start with the central topic in the middle</li>
+                    <li>Create branches for main categories or aspects</li>
+                    <li>Add sub-branches with specific points or examples</li>
+                    <li>Connect related ideas across branches</li>
+                    <li>Use colors and images to enhance memory</li>
+                </ul>
+            </div>
+            
+            <h3>Video Guide: Mastering Group Discussions - Dos, Don'ts, and Techniques</h3>
+            <div class="video-container">
+                <!-- Replace with your actual video embed code -->
+                <iframe src="https://www.youtube.com/embed/WTjr8llnc1s" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+        <div class="review-section">
+            <h2>Our class GD Activity </h2>
+            <h3>About the Discussion</h3>
+            <p>In this engaging group discussion, we explore the profound concept that success is not merely an endpoint but rather an ongoing process of growth, learning, and self-discovery.
+                The participants delve into various perspectives on what constitutes success and how our perception of it shapes our lives.</p>
+            
+            <blockquote>
+                "Success is not the key to happiness. Happiness is the key to success. If you love what you are doing, you will be successful." — Albert Schweitzer
+            </blockquote>
+            
+            <p>While many participants supported the idea of embracing the journey, important counterpoints were raised, emphasizing that in real-world scenarios, focusing solely on the journey might not be practical or sufficient.</p>
+
+
+            <h3>Key Insights</h3>
+            <p>The discussion uncovered several important realizations:</p>
+            <ul>
+                <li>The importance of enjoying the process rather than fixating on outcomes</li>
+                <li>How small daily improvements compound into significant success over time</li>
+                <li>The role of setbacks and failures as essential learning opportunities</li>
+                <li>However, societal pressure often forces individuals to focus more on tangible results like degrees, jobs, and status, rather than personal growth.</li>
+                <li>Due to limited time and resources, many people cannot afford to only enjoy the journey and must prioritize achieving specific goals quickly.</li>
+            </ul>
+
+            <h3>Watch the Full Discussion</h3>
+            <div class="video-container">
+                <!-- Replace with your actual YouTube embed code -->
+                <iframe src="https://www.youtube.com/embed/0ASZ-LlBtV0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <p1>This 10-minute discussion features diverse perspectives from participants of different backgrounds, each bringing unique insights to this timeless topic.</p1>
+            
+        </div>
+        <div class="read-more">
+            <h2 style="color: var(--accent); border-bottom: 1px solid rgba(255, 209, 102, 0.2); padding-bottom: 0.5rem;">Read More</h2>
+            <div class="related-articles" id="relatedArticles">
+                <!-- Articles will be loaded here by JavaScript -->
+            </div>
+        </div>
+    </div>
+    <script>
+        // Sample post data (in a real scenario, this would come from post.json)
+        const posts = [
+            {
+                id: 1,
+                title: "Profiling Sheet",
+                excerpt: "An overview of my personal attributes, aspirations, and core values.",
+                image: "../thumbnails/profile.png",
+                url: "2025-02-10.html",
+                date: "2025-02-10"
+            },
+            {
+                id: 2,
+                title: "AloeGlow (Presentation)",
+                excerpt: "A recorded presentation delivered as part of an academic classroom activity.",
+                image: "../thumbnails/AloeGlow.jpg",
+                url: "2025-03-04.html",
+                date: "2025-03-04"
+            },
+            {
+                id:3,
+                title: "Brain Activities & Self Introduction",
+                excerpt: "Understanding Left and Right Brain Functions and key points about self introduction",
+                image: "../thumbnails/act1.avif",
+                url: "2025-02-03.html",
+                date: "2025-02-03"
+            }
+        ];
+
+        // Function to load related articles
+        function loadRelatedArticles() {
+            const container = document.getElementById('relatedArticles');
+            
+            posts.forEach(post => {
+                const articleHTML = `
+                    <div class="article-card" onclick="window.location.href='${post.url}'">
+                        <img src="${post.image}" alt="${post.title}" class="article-img">
+                        <div class="article-content">
+                            <h3 class="article-title">${post.title}</h3>
+                            <p class="article-excerpt">${post.excerpt}</p>
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <span class="post-date" style="color: var(--accent); font-size: 0.9rem;">${post.date}</span>
+                                <a href="${post.url}" class="read-btn">Read More →</a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                container.insertAdjacentHTML('beforeend', articleHTML);
+            });
+        }
+
+        // Load articles when page loads
+        window.addEventListener('DOMContentLoaded', loadRelatedArticles);
+    </script>
+</body>
+</html>

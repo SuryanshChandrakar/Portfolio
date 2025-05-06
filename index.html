@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <meta name="description" content="Portfolio of Suryansh Chandrakar.">
+  <meta name="author" content="Suryansh Chandrakar">
+  <meta name="keywords" content="Portfolio, Web Development, Learning, Movie Reviews, Projects">
+  <title>Suryansh Chandrakar | Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Add this to your CSS */
+    .clickable-container {
+      position: relative;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .clickable-container:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+    
+    .clickable-container::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 1;
+    }
+    
+    .clickable-container a {
+      position: relative;
+      z-index: 2;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="main-content">
+
+    <!-- Navbar -->
+    <nav>
+      <ul>
+        <li><a href="#profile">Profile</a></li>
+        <li><a href="#learning">Learning</a></li>
+      </ul>
+    </nav>
+
+    <!-- Landing Page -->
+    <section class="landing">
+      <div class="photo-placeholder">
+        <img src="Me.jpg" alt="Suryansh Chandrakar's Photo">
+      </div>
+      <h1>Hi, I am <br><span>Suryansh Chandrakar</span></h1>
+      <p class="intro-text">An enthusiastic Computer Science student, always eager to explore, learn, and build new things. Passionate about technology and always ready for challenges that help me grow as a developer and as a person. Scroll down to know me better ↓</p>
+    </section>
+
+    <!-- Profile Section -->
+    <section class="container clickable-container" id="profile" onclick="window.location.href='profile.html'">
+      <h2>Want to know more about me?</h2>
+      <a href="profile.html" style="text-decoration: none; color: inherit;">
+        <p class="highlight">
+          Explore my profile to check out my skills, projects, and the journey so far in my learning adventure.
+        </p>
+      </a>
+    </section>
+    
+
+    <!-- Learning Section -->
+    <section class="container clickable-container" id="learning" onclick="window.location.href='LearnLog.html'">
+      <h2>Learning Never Stops!</h2>
+      <a href="LearnLog.html" style="text-decoration: none; color: inherit;">
+        <p class="highlight">
+          Every experience, every lecture, and every project has added something valuable to my learning journey. Here's a glimpse of what I've learned and how it's shaped me.
+        </p>
+      </a>
+    </section>
+
+  </div>
+
+  <script src="script.js"></script>
+
+  <!-- Footer -->
+  <footer>
+    <p>Designed & Developed by Suryansh Chandrakar | © 2025</p>
+  </footer>
+</body>
+
+</html>

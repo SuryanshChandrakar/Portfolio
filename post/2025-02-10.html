@@ -1,0 +1,258 @@
+<!-- 10-02-25 Profiling sheet -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Profile Videos</title>
+  <link rel="stylesheet" href="../style.css"> <!-- keep using your existing style file -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <style>
+    body {
+      background-color: #111;
+      color: white;
+      font-family: Arial, sans-serif;
+      display: flex;
+      height: 100vh;
+      margin: 0;
+    }
+    .questions {
+      width: 40%;
+      padding: 20px;
+      overflow-y: scroll;
+      border-right: 2px solid #222;
+    }
+    .questions h2 {
+      font-size: 28px;
+      margin-bottom: 10px;
+      /* display: flex;
+  justify-content: center;
+  padding-left: 40px;
+  box-sizing: border-box; */
+    }
+    .question-item {
+      margin-bottom: 15px;
+      cursor: pointer;
+      padding: 8px;
+      background-color: #222;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+    }
+    .question-item:hover {
+      background-color: #333;
+    }
+    .question-item.active {
+      background-color: #444;
+    }
+    .video-section {
+      width: 60%;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    iframe {
+      width: 90%;
+      height: 90%;
+      border: none;
+    }
+    /* Back Button Styles */
+    .back-button-container {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 1000;
+    }
+    
+    .back-button {
+      display: flex;
+      align-items: center;
+      background: rgba(0, 0, 0, 0.5);
+      color: #ffd166;
+      border: 1px solid rgba(255, 209, 102, 0.3);
+      padding: 8px 15px 8px 10px;
+      border-radius: 50px;
+      cursor: pointer;
+      font-family: Arial, sans-serif;
+      font-weight: 500;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(5px);
+    }
+    
+    .back-button:hover {
+      background: rgba(255, 209, 102, 0.2);
+      border-color: #ffd166;
+      transform: translateX(-3px);
+    }
+    
+    .back-button i {
+      margin-right: 5px;
+      font-size: 1.2rem;
+      color: #ffd166;
+    }
+    
+  </style>
+  <style>
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      text-align: center;
+      padding: 1rem 0;
+      background: linear-gradient(to bottom, #111 0%, transparent 100%);
+      z-index: 900;
+    }
+    
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      background: linear-gradient(45deg, #ff6b6b, #ffd166);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      display: inline-block;
+      margin: 0;
+    }
+    
+    .subtitle {
+      color: #ffd166;
+      font-size: 1.2rem;
+      font-weight: 300;
+      margin-top: 0.5rem;
+    }
+    
+    /* Adjust your existing body padding */
+    body {
+      padding-top: 120px; /* Makes space for the header */
+    }
+    
+    /* Adjust questions container */
+    .questions {
+      margin-top: 20px; /* Additional spacing */
+    }
+  </style>
+  <style>
+    .profile-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to bottom, #0a192f 0%, rgba(10, 25, 47, 0.9) 80%, transparent 100%);
+      padding: 1.5rem 0 0;
+      z-index: 900;
+      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+    }
+    
+    .header-content {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+    
+    /* Adjust body padding */
+    body {
+      padding-top: 180px;
+    }
+    
+    /* Adjust questions container */
+    .questions {
+      margin-top: 30px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+  </style>
+</head>
+<body>
+  <div class="back-button-container">
+    <a href="../LearnLog.html" class="back-button">
+      <i class="material-icons">arrow_back_ios</i> Back
+    </a>
+  </div>
+
+  <header class="profile-header">
+    <div class="header-content">
+      <h1>Profile Videos</h1>
+      <p class="subtitle">Professional Development Questions</p>
+      
+    </div>
+  </header>
+  
+  <div class="questions">
+    <h2>Questions</h2>
+    <div id="questionList"></div>
+  </div>
+  <div class="video-section">
+    <iframe id="videoPlayer" src="" allowfullscreen></iframe>
+  </div>
+
+  <script>
+    const questions = [
+      "Q.1: Write your career objective.",
+      "Q.2: Why do you want to be an engineer? Elaborate reasons.",
+      "Q.3: Write about projects or internship you have done/ are doing along with the learning.",
+      "Q.4: What would you consider a significant achievement in your life and why?",
+      "Q.5: Write about a failure of yours which you consider to share. What have you learned from it?",
+      "Q.6: What are your strengths? Write one or two instances where you have demonstrated your strengths.",
+      "Q.7: Write about your weaknesses. What are you doing to overcome your weaknesses?",
+      "Q.8: What is the most difficult moment that you have faced in your life so far? What qualities helped you to overcome the moment?",
+      "Q.9: Apart from academics, what else are you interested in? Make a separate list in terms of extracurricular activities, sports and any other interests.",
+      "Q.10: Give an example of an area, concept or thing that you are absolutely passionate about.",
+      "Q.11: Describe yourself as an individual in 5 lines.",
+      "Q.12: What kinds of people do you enjoy working with?",
+      "Q.13: What kinds of people you don’t want to work with? What would you do if they became your senior in your dream job?",
+      "Q.14: What do you expect from your first job? Prioritize and write in order.",
+      "Q.15: In the past year, what have you been dissatisfied about in your performance?",
+      "Q.16: Rate yourself out of 5 in verbal communication. What are you doing to improve your communication skills?",
+      "Q.17: Who is your role model? What qualities of that person you would like to see in your personality and why?",
+      "Q.18: Write a few lines about your friends. Do you think they help/ may help you in achieving your goals? If yes, how? If no, why do you accompany them?",
+      "Q.19: Write 3 leadership qualities. How many do you possess? Write an instance where you have applied those qualities.",
+      "Q.20: So finally, tell us something more about yourself or introduce yourself."
+    ];
+
+    const videoLinks = [
+      "https://www.youtube.com/embed/fz7Tr_Dw3Fo",
+      "https://www.youtube.com/embed/X-HWw0Exmrc",
+      "https://www.youtube.com/embed/l0-XY6PUptE",
+      "https://www.youtube.com/embed/f2TS6tJotpU",
+      "https://www.youtube.com/embed/zbBuYcqW7fY",
+      "https://www.youtube.com/embed/r0BdPrTDUG8",
+      "https://www.youtube.com/embed/ON3ULpxSBEg",
+      "https://www.youtube.com/embed/A9BChWpbArM",
+      "https://www.youtube.com/embed/hwpmMZ9ff2A",
+      "https://www.youtube.com/embed/Zkt6VRqRZZk",
+      "https://www.youtube.com/embed/rrnf1XNrpMs",
+      "https://www.youtube.com/embed/-pXQtYDo6qg",
+      "https://www.youtube.com/embed/nzcJTwXGGIM",
+      "https://www.youtube.com/embed/5l-M7QhUKqM",
+      "https://www.youtube.com/embed/04dsxJhMtj8",
+      "https://www.youtube.com/embed/xL7cIwsPjyM",
+      "https://www.youtube.com/embed/91mZXKa-XMY",
+      "https://www.youtube.com/embed/IPDsm3Jl0os",
+      "https://www.youtube.com/embed/TvHhpB0HnEQ",
+      "https://www.youtube.com/embed/Ga7Ng8lG2sI"
+    ];
+
+    const questionList = document.getElementById("questionList");
+    const videoPlayer = document.getElementById("videoPlayer");
+
+    questions.forEach((q, i) => {
+      const div = document.createElement("div");
+      div.className = "question-item";
+      div.textContent = q;
+      div.onclick = () => {
+        document.querySelectorAll(".question-item").forEach(el => el.classList.remove("active"));
+        div.classList.add("active");
+        videoPlayer.src = videoLinks[i];
+      };
+      if (i === 0) {
+        div.classList.add("active");
+        videoPlayer.src = videoLinks[0];
+      }
+      questionList.appendChild(div);
+    });
+  </script>
+</body>
+</html>
